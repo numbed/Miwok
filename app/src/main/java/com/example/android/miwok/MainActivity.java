@@ -27,26 +27,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set the content of the activity to use the activity_main.xml layout file
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);   //Find NUMBERS view
+
+        //Set onClick listeners for each activity
+        setCustomOnClickListener(R.id.numbers, NumbersActivity.class);
+        setCustomOnClickListener(R.id.family, FamilyActivity.class);
+        setCustomOnClickListener(R.id.colors, ColorsActivity.class);
+        setCustomOnClickListener(R.id.phrases, PhrasesActivity.class);
     }
 
-    public void openNumbersList (View view) {
-        Intent i = new Intent(this, NumbersActivity.class);
-        startActivity(i);
-    }
 
-    public void openFamilyActivity(View view) {
-        Intent i = new Intent(this, FamilyActivity.class);
-        startActivity(i);
-    }
-
-    public void openColorsActivity (View view) {
-        Intent i = new Intent(this, ColorsActivity.class);
-        startActivity(i);
-    }
-
-    public void openPhrasesActivity (View view) {
-        Intent i = new Intent(this, PhrasesActivity.class);
-        startActivity(i);
+        public void setCustomOnClickListener(int resourceID, final Class className) {
+        View view = findViewById(resourceID);
+        view.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View view) {
+                                     Intent intent = new Intent(MainActivity.this, className);
+                                     startActivity(intent);
+                                 }
+                             }
+        );
     }
 }
+
+
+
+
